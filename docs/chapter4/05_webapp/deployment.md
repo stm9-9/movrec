@@ -10,7 +10,7 @@
 
 ## Live URL (เจ้าของกรอกหลัง deploy)
 
-- [ ] URL: `https://<ชื่อแอป>.streamlit.app` — **ยังไม่ deploy** (รอเจ้าของดำเนินการ)
+- [ ] URL: `https://movrecthesis.streamlit.app/` — **ยังไม่ deploy** (รอเจ้าของดำเนินการ)
 
 ## ข้อจำกัดที่ทราบ (Known limitations)
 
