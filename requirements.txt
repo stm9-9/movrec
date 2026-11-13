@@ -1,0 +1,8 @@
+# Pinned to the working local environment (verified 2026-11-13, Python 3.12)
+streamlit==1.67.0
+pandas==3.0.1
+numpy==2.3.5
+scikit-learn==1.9.1
+scikit-surprise==1.1.5
+joblib==1.6.0
+scipy==1.18.1

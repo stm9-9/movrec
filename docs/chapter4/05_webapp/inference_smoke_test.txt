@@ -1,0 +1,44 @@
+=== Inference smoke test (Stage 5.1) ===
+DESIGN NOTE:
+- CF: item-item cosine approximation on SVD B item factors (new users have no fitted p_u).
+- CBF: full CBF v2 feature matrix, genre-only query at cold start (overview block = 0).
+- Hybrid therefore approximates, but does not exactly reproduce, Stage 4's Hybrid A.
+
+known_movies() count (SVD can score): 15
+all_movies() count (full catalog): 9841
+
+Synthetic user ratings: {299534: 5.0, 157336: 5.0, 496243: 4.0, 372058: 4.0, 597: 3.0}
+Preferred genres: [28, 878] (['บู๊', 'นิยายวิทยาศาสตร์'])
+
+--- recommend_cf (item-item via SVD B) (top 5) ---
+  1. เดอะ คอนเจอริ่ง คนเรียกผี (id 138843) score=5.0000
+  2. เร็ว...แรงทะลุนรก 7 (id 168259) score=4.4379
+  3. แฮร์รี่ พอตเตอร์ กับ ศิลาอาถรรพ์ (id 671) score=4.2636
+  4. วันอลวน วิญญาณอลเวง (id 354912) score=4.0000
+  5. ผจญภัยแดนคำสาปราชินีหิมะ (id 109445) score=4.0000
+
+--- recommend_cbf (genre cosine, CBF v2) (top 5) ---
+  1. ริดดิค (id 2789) score=0.7071
+  2. 2 คนไม่ใช่คน 2: นักรบกระดูกสมองกล (id 10366) score=0.7071
+  3. เดอะ ฮังเกอร์เกมส์ ปฐมบทเกมล่าเกม (id 695721) score=0.7071
+  4. เอดจ์ ออฟ ทูมอร์โรว์  ซูเปอร์นักรบดับทัพอสูร (id 137113) score=0.7071
+  5. คนหน้ากากมหากาฬ 2115 (id 9482) score=0.7071
+
+--- recommend_popular (train mean rating) (top 5) ---
+  1. อเวนเจอร์ส: เผด็จศึก (id 299534) score=3.8571
+  2. อินเตอร์สเตลลาร์ ทะยานดาวกู้โลก (id 157336) score=3.7958
+  3. แฮร์รี่ พอตเตอร์ กับ ศิลาอาถรรพ์ (id 671) score=3.6667
+  4. ด่วนนรกซอมบี้คลั่ง (id 396535) score=3.6410
+  5. ชนชั้นปรสิต (id 496243) score=3.6000
+
+--- recommend_hybrid (alpha=0.3) (top 5) ---
+  1. ผีชีวะ วิกฤตเกาะมรณะ (id 1083862) score=0.7350
+  2. ริดดิค (id 2789) score=0.7000
+  3. 2 คนไม่ใช่คน 2: นักรบกระดูกสมองกล (id 10366) score=0.7000
+  4. เดอะ ฮังเกอร์เกมส์ ปฐมบทเกมล่าเกม (id 695721) score=0.7000
+  5. เอดจ์ ออฟ ทูมอร์โรว์  ซูเปอร์นักรบดับทัพอสูร (id 137113) score=0.7000
+
+--- recommend_hybrid fallback (no signal) (top 3) ---
+  1. อเวนเจอร์ส: เผด็จศึก (id 299534) score=3.8571
+  2. อินเตอร์สเตลลาร์ ทะยานดาวกู้โลก (id 157336) score=3.7958
+  3. แฮร์รี่ พอตเตอร์ กับ ศิลาอาถรรพ์ (id 671) score=3.6667

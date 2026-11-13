@@ -1,0 +1,6 @@
+=== CBF MODEL SUMMARY ===
+Input movies: 9841 (dropped 0 empty-feature rows)
+TF-IDF max_features: 5000
+TF-IDF matrix: 9841 x 5000 (sparse)
+Pairwise cosine matrix dimension: 9841 x 9841 (computed lazily via kNN)
+NearestNeighbors: metric='cosine', k=11 (top-10 after excluding self)
